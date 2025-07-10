@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HealthFirst</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f8fb;
+    color: #333;
+  }
+
+  /* Fixed top navbar */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: white;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    z-index: 1000;
+  }
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #222;
+    display: flex;
+    align-items: center;
+  }
+  .logo svg {
+    margin-right: 8px;
+    fill: #6a2ceb;
+  }
+
+  ul.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+  }
+  ul.nav-links li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+  ul.nav-links li a:hover {
+    color: #6a2ceb;
+  }
+
+  /* Buttons container */
+  .nav-buttons {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .btn-login {
+    background: #6a2ceb;
+    border: none;
+    color: white;
+    padding: 0.4rem 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+  }
+  .btn-login:hover {
+    background: #530ecb;
+  }
+  .btn-register {
+    background: transparent;
+    border: 2px solid #6a2ceb;
+    color: #6a2ceb;
+    padding: 0.4rem 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  .btn-register:hover {
+    background: #6a2ceb;
+    color: white;
+  }
+
+  /* Hero section */
+  main {
+    margin-top: 72px; /* to avoid nav overlap */
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+  }
+  .hero {
+    background: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    border-radius: 12px;
+    color: white;
+    padding: 4rem 3rem;
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.35);
+  }
+  .hero h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .hero p {
+    margin: 0 0 2rem 0;
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  .hero-buttons button {
+    padding: 0.6rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-patient {
+    background: #6a2ceb;
+    color: white;
+  }
+  .btn-patient:hover {
+    background: #530ecb;
+  }
+  .btn-doctor {
+    background: white;
+    color: #6a2ceb;
+    border: 2px solid #6a2ceb;
+  }
+  .btn-doctor:hover {
+    background: #6a2ceb;
+    color: white;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    nav {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    ul.nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .hero {
+      padding: 3rem 2rem;
+      font-size: 0.9rem;
+    }
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+    .hero-buttons {
+      flex-direction: column;
+    }
+    .hero-buttons button {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo" aria-label="HealthFirst Logo">
+      <!-- Simple diamond icon -->
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
+      HealthFirst
+    </div>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-buttons">
+      <button class="btn-login" type="button">Login</button>
+      <button class="btn-register" type="button">Register</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" role="banner" aria-label="Welcome to HealthFirst">
+    <h1>Welcome to HealthFirst</h1>
+    <p>Your health is our priority. Find the best care tailored to your needs.</p>
+    <div class="hero-buttons">
+      <button class="btn-patient" type="button">I'm a Patient</button>
+      <button class="btn-doctor" type="button">I'm a Doctor</button>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

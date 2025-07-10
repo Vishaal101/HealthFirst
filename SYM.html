@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Symptom Checker - Step 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdfdff;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .progress {
+      height: 100%;
+      width: 20%; /* Step 1 of 5 */
+      background-color: #a855f7;
+      border-radius: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .symptom-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background-color: #f1f1f1;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tag.selected {
+      background-color: #a855f7;
+      color: white;
+    }
+
+    .next-btn {
+      background-color: #a855f7;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      float: right;
+    }
+
+    .next-btn:hover {
+      background-color: #9333ea;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Symptom Checker</h2>
+    <div>Step 1 of 5</div>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+
+    <input type="text" id="symptomInput" placeholder="Describe your symptoms">
+
+    <div>
+      <strong>Common Symptoms</strong>
+      <div class="symptom-tags">
+        <div class="tag">Fever</div>
+        <div class="tag">Cough</div>
+        <div class="tag">Headache</div>
+        <div class="tag">Fatigue</div>
+        <div class="tag">Sore Throat</div>
+        <div class="tag">Nausea</div>
+      </div>
+    </div>
+
+    <button class="next-btn" onclick="goToNextStep()">Next</button>
+  </div>
+
+  <script>
+    const tags = document.querySelectorAll('.tag');
+    const symptomInput = document.getElementById('symptomInput');
+
+    const severeSymptoms = ['Fever', 'Fatigue', 'Nausea'];
+
+    tags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        tag.classList.toggle('selected');
+        updateInputFromTags();
+      });
+    });
+
+    function updateInputFromTags() {
+      const selected = [...tags]
+        .filter(tag => tag.classList.contains('selected'))
+        .map(tag => tag.innerText);
+      symptomInput.value = selected.join(', ');
+    }
+
+    function goToNextStep() {
+      const input = symptomInput.value.trim();
+      if (input === '') {
+        alert("Please describe your symptoms or select at least one.");
+        return;
+      }
+
+      const userSymptoms = input.split(',').map(s => s.trim().toLowerCase());
+
+      const isSevere = severeSymptoms.some(severe =>
+        userSymptoms.includes(severe.toLowerCase())
+      );
+
+      if (isSevere) {
+        const doctorPhone = "+918072009103"; // Example: India code +91
+        const message = encodeURIComponent(`Hello Doctor, I have severe symptoms: ${input}. Please advise.`);
+        const whatsappURL = `https://wa.me/${doctorPhone}?text=${message}`;
+        window.open(whatsappURL, '_blank');
+      } else {
+        alert("Proceeding to Step 2 with symptoms: " + input);
+      }
+    }
+  </script>
+</body>
+</html>
